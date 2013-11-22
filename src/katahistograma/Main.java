@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         PersonLoader loader = createPersonLoader();
         HistogramBuilder<Person> builder =  createBuilder(loader.load());
-        ConsoleHistogramViewer<String> viewer = createHistogramViewer(builder.build(createAttributeExtractor()));
+        HistogramViewer<String> viewer = createHistogramViewer(builder.build(createAttributeExtractor()));
         viewer.show();
     }
 
@@ -31,8 +31,8 @@ public class Main {
         return new HistogramBuilder<>(collection);
     }
 
-    private static ConsoleHistogramViewer<String> createHistogramViewer(Histogram<String> histogram) {
-        return new ConsoleHistogramViewer<>(histogram);
+    private static ChartHistogramViewer<String> createHistogramViewer(Histogram<String> histogram) {
+        return new ChartHistogramViewer<>(histogram);
     }
 
     private static AttributeExtractor<Person,String> createAttributeExtractor() {
