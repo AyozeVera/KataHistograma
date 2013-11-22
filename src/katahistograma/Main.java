@@ -6,7 +6,9 @@ public class Main {
 
     public static void main(String[] args) {
         PersonLoader loader = createPersonLoader();
-        
+        HistogramBuilder<Person> builder =  createBuilder(loader.load());
+        HistogramViewer<Person> viewer = createHistogramViewer();
+        viewer.show(builder.build());
     }
 
     private static PersonLoader createPersonLoader() {
@@ -21,8 +23,15 @@ public class Main {
                 list.add(new Person("Jackie", new Email("jackie@gmail.com"), Sex.FEMALE));
                 list.add(new Person("John", new Email("jfk@gmail.com"), Sex.MALE));
                 return list.toArray(new Person[list.size()]);
-                
             }
         };
+    }
+
+    private static HistogramBuilder<Person> createBuilder(Person[] collection) {
+        return new HistogramBuilder<>(collection);
+    }
+
+    private static HistogramViewer<Person> createHistogramViewer() {
+        return new HistogramViewer<>();
     }
 }
