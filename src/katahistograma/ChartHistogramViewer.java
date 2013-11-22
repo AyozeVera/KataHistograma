@@ -1,6 +1,5 @@
 package katahistograma;
 
-import java.awt.PopupMenu;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -17,7 +16,8 @@ public class ChartHistogramViewer<T> extends HistogramViewer<T>{
     @Override
     public void show() {
         ApplicationFrame frame = new ApplicationFrame("Histogram");
-        frame.add(createChartPanel());  
+        frame.add(createChartPanel());
+        frame.pack();
         frame.setVisible(true);
         
     }
