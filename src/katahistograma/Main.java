@@ -7,8 +7,8 @@ public class Main {
     public static void main(String[] args) {
         PersonLoader loader = createPersonLoader();
         HistogramBuilder<Person> builder =  createBuilder(loader.load());
-        ConsoleHistogramViewer<String> viewer = createHistogramViewer();
-        viewer.show(builder.build(createAttributeExtractor()));
+        ConsoleHistogramViewer<String> viewer = createHistogramViewer(builder.build(createAttributeExtractor()));
+        viewer.show();
     }
 
     private static PersonLoader createPersonLoader() {
@@ -21,7 +21,7 @@ public class Main {
                 list.add(new Person("Alba", new Email("alba@yahoo.fr"), Sex.FEMALE));
                 list.add(new Person("Tony", new Email("tony@gmail.com"), Sex.MALE));
                 list.add(new Person("Jackie", new Email("jackie@gmail.com"), Sex.FEMALE));
-                list.add(new Person("John", new Email("jfk@gmail.com"), Sex.MALE));
+                list.add(new Person("John", new Email("jfk@hotmail.com"), Sex.MALE));
                 return list.toArray(new Person[0]);
             }
         };
@@ -31,8 +31,8 @@ public class Main {
         return new HistogramBuilder<>(collection);
     }
 
-    private static ConsoleHistogramViewer<String> createHistogramViewer() {
-        return new ConsoleHistogramViewer<>();
+    private static ConsoleHistogramViewer<String> createHistogramViewer(Histogram<String> histogram) {
+        return new ConsoleHistogramViewer<>(histogram);
     }
 
     private static AttributeExtractor<Person,String> createAttributeExtractor() {
