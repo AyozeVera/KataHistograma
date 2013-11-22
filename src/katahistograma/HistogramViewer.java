@@ -1,10 +1,15 @@
 package katahistograma;
 
-public class HistogramViewer<T> {
-    public void show (Histogram<T> histogram){
-        for (T item : histogram.keySet()) {
-            System.out.println(item + "");
-        }
-        
+abstract class HistogramViewer<T> {
+    private Histogram<T> histogram; 
+
+    public HistogramViewer(Histogram<T> histogram) {
+        this.histogram = histogram;
     }
+
+    public Histogram<T> getHistogram() {
+        return histogram;
+    }
+    
+    public abstract void show();
 }
